@@ -25,16 +25,18 @@ class CategoryItem extends StatelessWidget {
         //     },
         //   ),
         // );
-        Navigator.pushNamed(context, '/category', arguments: {
+        Navigator.pushNamed(context, CategoryMeals.routeName, arguments: {
           'title': title,
           'id': id,
         });
       },
       child: Container(
         padding: const EdgeInsets.all(15),
-        child: Text(
-          title,
-          style: Theme.of(context).textTheme.headline6,
+        child: Center(
+          child: Text(
+            title,
+            style: Theme.of(context).textTheme.headline6,
+          ),
         ),
         //color: bgColor,
         decoration: BoxDecoration(
