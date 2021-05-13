@@ -6,6 +6,7 @@ class CategoriesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.green[200],
       appBar: AppBar(
         title: Text('Categories'),
       ),
