@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_meals/screens/bottom_tab_bar.dart';
 import 'package:flutter_meals/screens/categories.dart';
 import 'package:flutter_meals/screens/category_meals.dart';
 import 'package:flutter_meals/screens/tabs_screen.dart';
@@ -32,7 +33,8 @@ class MyApp extends StatelessWidget {
             )),
       ),
       debugShowCheckedModeBanner: false,
-      home: TabScreen(),
+      home: BottomTabBar(),
+      //home: TabScreen(),
       //initialRoute: '/',
       // routes: {
       //   '/': (context) => CategoriesScreen(),
