@@ -1,9 +1,14 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_meals/screens/bottom_tab_bar.dart';
 import 'package:flutter_meals/screens/filters_screen.dart';
 
 class CustomDrawer extends StatelessWidget {
-  Widget reptile({String title, IconData iconData, Function function}) {
+  Widget reptile({
+    String title,
+    IconData iconData,
+    Function function,
+  }) {
     return ListTile(
       leading: Icon(
         iconData,
@@ -47,9 +52,14 @@ class CustomDrawer extends StatelessWidget {
             title: 'Meals',
             iconData: Icons.restaurant,
             function: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return BottomTabBar();
-              }));
+              Navigator.pushReplacement(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) {
+                    return BottomTabBar();
+                  },
+                ),
+              );
             },
           ),
           SizedBox(
@@ -59,9 +69,14 @@ class CustomDrawer extends StatelessWidget {
             title: 'Filters',
             iconData: Icons.settings,
             function: () {
-              Navigator.push(context, MaterialPageRoute(builder: (context) {
-                return FiltersScreen();
-              }));
+              Navigator.pushReplacement(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) {
+                    return FiltersScreen();
+                  },
+                ),
+              );
             },
           ),
         ],

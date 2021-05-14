@@ -23,7 +23,14 @@ class MealDetail extends StatelessWidget {
     final selectedMeal =
         DUMMY_MEALS.firstWhere((element) => element.id == mealId);
     return Scaffold(
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.delete),
+        onPressed: () {
+          Navigator.of(context).pop(mealId);
+        },
+      ),
       appBar: AppBar(
+        //automaticallyImplyLeading: false,
         leading: null,
         title: Text('${selectedMeal.title}'),
       ),
