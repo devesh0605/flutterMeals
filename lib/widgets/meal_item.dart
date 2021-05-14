@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_meals/models/meal.dart';
+import 'package:flutter_meals/screens/meal_deatail.dart';
 
 class MealItem extends StatelessWidget {
+  final String id;
   final String title;
   final String imageUrl;
   final int duration;
@@ -9,6 +12,7 @@ class MealItem extends StatelessWidget {
   final Affordability affordability;
 
   MealItem({
+    @required this.id,
     @required this.title,
     @required this.affordability,
     @required this.complexity,
@@ -32,11 +36,48 @@ class MealItem extends StatelessWidget {
     }
   }
 
-  void selectMeal() {}
+  String get affordabilityText {
+    switch (affordability) {
+      case Affordability.Affordable:
+        return 'Affordable';
+        break;
+      case Affordability.Pricey:
+        return 'Pricey';
+        break;
+      case Affordability.Luxurious:
+        return 'Luxurious';
+        break;
+      default:
+        return 'Nothing';
+    }
+  }
+
+  // void selectMeal(BuildContext context) {
+  //   Navigator.push(
+  //     context,
+  //     CupertinoPageRoute(
+  //       builder: (context) {
+  //         return MealDetail();
+  //       },
+  //     ),
+  //   );
+  // }
+
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: selectMeal,
+      onTap: () {
+        Navigator.push(
+          context,
+          CupertinoPageRoute(
+            builder: (context) {
+              return MealDetail(
+                mealId: id,
+              );
+            },
+          ),
+        );
+      },
       child: Card(
         color: Colors.lightGreenAccent,
         shape: RoundedRectangleBorder(
@@ -90,7 +131,7 @@ class MealItem extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(20.0),
               child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   Row(
                     children: [
@@ -118,6 +159,22 @@ class MealItem extends StatelessWidget {
                       ),
                       Text(
                         complexityText,
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                        ),
+                      )
+                    ],
+                  ),
+                  Row(
+                    children: [
+                      Icon(
+                        Icons.attach_money,
+                      ),
+                      SizedBox(
+                        width: 6,
+                      ),
+                      Text(
+                        affordabilityText,
                         style: TextStyle(
                           fontWeight: FontWeight.bold,
                         ),

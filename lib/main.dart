@@ -37,26 +37,23 @@ class MyApp extends StatelessWidget {
         '/': (context) => CategoriesScreen(),
         CategoryMeals.routeName: (context) => CategoryMeals(),
       },
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  @override
-  _MyHomePageState createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('DeliMeals'),
-        centerTitle: true,
-      ),
-      body: Center(
-        child: Text('Navigation Time'),
-      ),
+      // onGenerateRoute: (settings) {
+      //   print(settings.arguments);
+      //   if (settings.name=='/abc'){
+      //     return ...;
+      //   }
+      //   if (settings.name =='/xyz'){
+      //     return ...;
+      //   }
+      //   return MaterialPageRoute(builder: (context) {
+      //     return CategoriesScreen();
+      //   });
+      // },
+      onUnknownRoute: (settings) {
+        return MaterialPageRoute(builder: (context) {
+          return CategoriesScreen();
+        });
+      },
     );
   }
 }
