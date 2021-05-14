@@ -14,21 +14,21 @@ class CategoryItem extends StatelessWidget {
       splashColor: Theme.of(context).primaryColor,
       borderRadius: BorderRadius.circular(15),
       onTap: () {
-        // Navigator.push(
-        //   context,
-        //   CupertinoPageRoute(
-        //     builder: (context) {
-        //       return CategoryMeals(
-        //         title: title,
-        //         id: id,
-        //       );
-        //     },
-        //   ),
-        // );
-        Navigator.pushNamed(context, CategoryMeals.routeName, arguments: {
-          'title': title,
-          'id': id,
-        });
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) {
+              return CategoryMeals(
+                title: title,
+                id: id,
+              );
+            },
+          ),
+        );
+        // Navigator.pushNamed(context, CategoryMeals.routeName, arguments: {
+        //   'title': title,
+        //   'id': id,
+        // });
       },
       child: Container(
         padding: const EdgeInsets.all(15),

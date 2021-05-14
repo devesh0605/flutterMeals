@@ -116,6 +116,7 @@ class MealDetail extends StatelessWidget {
           ],
         ),
       ),
+      backgroundColor: Colors.lightGreen[400],
     );
   }
 }
