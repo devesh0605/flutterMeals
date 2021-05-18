@@ -1,6 +1,8 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_meals/models/dummy_data.dart';
 import 'package:flutter_meals/models/meal.dart';
+import 'package:flutter_meals/screens/bottom_tab_bar.dart';
 import 'package:provider/provider.dart';
 
 class MealDetail extends StatefulWidget {
@@ -39,7 +41,7 @@ class _MealDetailState extends State<MealDetail> {
         },
       ),
       appBar: AppBar(
-        //automaticallyImplyLeading: false,
+        automaticallyImplyLeading: false,
         leading: null,
         title: Text('${selectedMeal.title}'),
         actions: [
@@ -66,6 +68,15 @@ class _MealDetailState extends State<MealDetail> {
               setState(() {
                 mealDetails.toggleFavorite(widget.mealId);
               });
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pushReplacement(context,
+                  CupertinoPageRoute(builder: (context) {
+                return BottomTabBar();
+              }));
             },
           )
         ],

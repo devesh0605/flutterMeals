@@ -27,11 +27,11 @@ class _BottomTabBarState extends State<BottomTabBar> {
         FlatButton(
           child: Row(
             children: [
-              Icon(Icons.category),
+              Icon(Icons.refresh),
               SizedBox(
                 width: 5,
               ),
-              Text('Categories'),
+              Text('Refresh'),
             ],
           ),
           onPressed: () {},
