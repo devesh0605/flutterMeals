@@ -63,6 +63,12 @@ class MealItem with ChangeNotifier {
     return _availableMeals;
   }
 
+  List<Meal> _favoriteMeals = [];
+
+  List<Meal> get favoriteMeals {
+    return _favoriteMeals;
+  }
+
   void setFilters(Map<String, bool> filterData) {
     _filters = filterData;
     _availableMeals = DUMMY_MEALS.where((element) {
@@ -81,5 +87,21 @@ class MealItem with ChangeNotifier {
       return true;
     }).toList();
     notifyListeners();
+  }
+
+  void toggleFavorite(String mealId) {
+    final existingIndex =
+        _favoriteMeals.indexWhere((meal) => meal.id == mealId);
+    if (existingIndex >= 0) {
+      _favoriteMeals.removeAt(existingIndex);
+    } else {
+      _favoriteMeals
+          .add(DUMMY_MEALS.firstWhere((element) => element.id == mealId));
+    }
+    notifyListeners();
+  }
+
+  bool isMealFavorite(String id) {
+    return _favoriteMeals.any((element) => element.id == id);
   }
 }

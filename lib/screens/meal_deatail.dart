@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_meals/models/dummy_data.dart';
+import 'package:flutter_meals/models/meal.dart';
+import 'package:provider/provider.dart';
 
-class MealDetail extends StatelessWidget {
+class MealDetail extends StatefulWidget {
   final mealId;
   MealDetail({this.mealId});
 
+  @override
+  _MealDetailState createState() => _MealDetailState();
+}
+
+class _MealDetailState extends State<MealDetail> {
   Widget headingBuilder(BuildContext context, String title) {
     return Container(
       margin: EdgeInsets.symmetric(vertical: 10),
@@ -16,23 +23,52 @@ class MealDetail extends StatelessWidget {
   }
 
   final ScrollController _controllerOne = ScrollController();
+
   final ScrollController _controllerTwo = ScrollController();
 
   @override
   Widget build(BuildContext context) {
+    final mealDetails = Provider.of<MealItem>(context, listen: false);
     final selectedMeal =
-        DUMMY_MEALS.firstWhere((element) => element.id == mealId);
+        DUMMY_MEALS.firstWhere((element) => element.id == widget.mealId);
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.delete),
         onPressed: () {
-          Navigator.of(context).pop(mealId);
+          Navigator.of(context).pop(widget.mealId);
         },
       ),
       appBar: AppBar(
         //automaticallyImplyLeading: false,
         leading: null,
         title: Text('${selectedMeal.title}'),
+        actions: [
+          FlatButton(
+            child: Row(
+              children: [
+                Text(
+                  mealDetails.isMealFavorite(widget.mealId)
+                      ? 'Remove Favorite'
+                      : 'Add Favorite',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                Icon(
+                  mealDetails.isMealFavorite(widget.mealId)
+                      ? Icons.star
+                      : Icons.star_border,
+                  color: Colors.yellow,
+                )
+              ],
+            ),
+            onPressed: () {
+              setState(() {
+                mealDetails.toggleFavorite(widget.mealId);
+              });
+            },
+          )
+        ],
       ),
       body: SingleChildScrollView(
         child: Column(
